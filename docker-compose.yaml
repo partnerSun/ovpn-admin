@@ -4,6 +4,7 @@ services:
   openvpn:
     image: registry.cn-beijing.aliyuncs.com/partnersun/openvpn:v2.0
     command: /etc/openvpn/setup/configure.sh
+    restart: always
     environment:
       OVPN_SERVER_NET: "10.15.0.0"
       OVPN_SERVER_MASK: "255.255.0.0" 
@@ -25,6 +26,7 @@ services:
   ovpn-admin:
     image: registry.cn-beijing.aliyuncs.com/partnersun/openvpn:admin-latest
     command: /app/ovpn-admin
+    restart: always
     environment:
       OVPN_DEBUG: "true"
       OVPN_VERBOSE: "true"
@@ -38,6 +40,8 @@ services:
       OVPN_AUTH_DB_PATH: "/mnt/easyrsa/pki/users.db"
       LOG_LEVEL: "debug"
     network_mode: service:openvpn
+    depends_on:
+      - openvpn
     volumes:
       - /data/openvpn/easyrsa_master:/mnt/easyrsa
       - /data/openvpn/ccd_master:/mnt/ccd
