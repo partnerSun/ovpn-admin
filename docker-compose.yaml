@@ -18,7 +18,7 @@ services:
     volumes:
       - /data/openvpn/easyrsa_master:/etc/openvpn/easyrsa
       - /data/openvpn/ccd_master:/etc/openvpn/ccd
-      - /var/log/openvpn/openvpn-status.log:/var/log/openvpn-status.log
+      - /var/log/openvpn:/var/log/openvpn
     networks: 
       network1:
         ipv4_address: 172.20.0.5 
