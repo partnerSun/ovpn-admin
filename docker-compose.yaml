@@ -18,6 +18,7 @@ services:
     volumes:
       - /data/openvpn/easyrsa_master:/etc/openvpn/easyrsa
       - /data/openvpn/ccd_master:/etc/openvpn/ccd
+      - /var/log/openvpn/openvpn-status.log:/var/log/openvpn-status.log
     networks: 
       network1:
         ipv4_address: 172.20.0.5 
@@ -31,7 +32,7 @@ services:
       OVPN_CCD: "true"
       OVPN_CCD_PATH: "/mnt/ccd"
       EASYRSA_PATH: "/mnt/easyrsa"
-      OVPN_SERVER: "123.232.101.133:20194:tcp"
+      OVPN_SERVER: "public-ip:20194:tcp"
       OVPN_INDEX_PATH: "/mnt/easyrsa/pki/index.txt"
       OVPN_AUTH: "true"
       OVPN_AUTH_DB_PATH: "/mnt/easyrsa/pki/users.db"
